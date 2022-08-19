@@ -1,0 +1,16 @@
+version: "3.4"
+services:
+    pg:
+        image: postgres:12.9
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_USER: ${USER}
+            POSTGRES_PASSWORD: password
+            POSTGRES_HOST_AUTH_METHOD: trust
+            PGDATA: /var/lib/postgresql/data
+        volumes:
+            - ./pg:/docker-entrypoint-initdb.d
+            - db-data:/var/lib/postgresql/data
+volumes:
+    db-data:
